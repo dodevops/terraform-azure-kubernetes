@@ -130,7 +130,7 @@ variable "static_outbound_ip_count" {
   EOF
   validation {
     condition     = var.static_outbound_ip_count >= 1 && var.static_outbound_ip_count <= 100
-    error_message = "idle_timeout has to be between 1 and 100 including."
+    error_message = "Static_outbound_ip_count has to be between 1 and 100 including."
   }
   default = 1
 }
@@ -140,7 +140,7 @@ variable "outbound_ports_allocated" {
   description = "Pre-allocated ports (AKS default: 0)"
   validation {
     condition     = var.outbound_ports_allocated >= 0 && var.outbound_ports_allocated <= 64000
-    error_message = "outbound_ports_allocated has to be between 0 and 64000 including."
+    error_message = "Outbound_ports_allocated has to be between 0 and 64000 including."
   }
   default = 0
 }
@@ -157,7 +157,7 @@ variable "idle_timeout" {
   default     = 5
   validation {
     condition     = var.idle_timeout >= 4 && var.idle_timeout <= 120
-    error_message = "idle_timeout has to be between 4 and 120 including."
+    error_message = "Idle_timeout has to be between 4 and 120 including."
   }
 }
 
