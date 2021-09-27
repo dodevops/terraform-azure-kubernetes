@@ -129,10 +129,10 @@ variable "static_outbound_ip_count" {
     bottlenecks. Recommended in that case is to set the count at least +5 more than the count of kubernetes nodes.
   EOF
   validation {
-    condition     = var.static_outbound_ip_count >= 1 && var.static_outbound_ip_count <= 100
-    error_message = "Static_outbound_ip_count has to be between 1 and 100 including."
+    condition     = var.static_outbound_ip_count >= 0 && var.static_outbound_ip_count <= 100
+    error_message = "Static_outbound_ip_count has to be between 0 and 100 including."
   }
-  default = 1
+  default = 0
 }
 
 variable "outbound_ports_allocated" {

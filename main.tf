@@ -48,10 +48,13 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     network_plugin    = "azure"
     network_policy    = var.network_policy
     load_balancer_sku = length(var.node_pools) > 0 ? "Standard" : var.load_balancer_sku
-    load_balancer_profile {
-      outbound_ip_address_ids  = azurerm_public_ip.public-ip-outbound[*].id
-      outbound_ports_allocated = var.outbound_ports_allocated
-      idle_timeout_in_minutes  = var.idle_timeout
+    dynamic load_balancer_profile {
+      for_each = azurerm_public_ip.public-ip-outbound
+      content {
+        outbound_ip_address_ids  = azurerm_public_ip.public-ip-outbound[*].id
+        outbound_ports_allocated = var.outbound_ports_allocated
+        idle_timeout_in_minutes  = var.idle_timeout
+      }
     }
   }
 
