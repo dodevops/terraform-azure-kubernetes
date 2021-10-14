@@ -250,7 +250,15 @@ Description:     On a lot of outgoing connections use this together with the max
 
 Type: `number`
 
-Default: `1`
+Default: `0`
+
+### tags
+
+Description: Map of tags for the resources
+
+Type: `map(any)`
+
+Default: `{}`
 
 ## Outputs
 

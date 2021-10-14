@@ -18,6 +18,12 @@ variable "resource_group" {
   description = "Azure Resource Group to use"
 }
 
+variable "tags" {
+  type        = map(any)
+  description = "Map of tags for the resources"
+  default     = {}
+}
+
 variable "client_id" {
   type        = string
   description = "Azure client ID to use to manage Azure resources from the cluster, like f.e. load balancers"
