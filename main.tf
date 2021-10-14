@@ -15,6 +15,7 @@ resource "azurerm_kubernetes_cluster" "k8s" {
   name                = local.cluster_name
   location            = var.location
   resource_group_name = var.resource_group
+  tags                = var.tags
   dns_prefix          = var.dns_prefix == "NONE" ? local.cluster_name : var.dns_prefix
   sku_tier            = var.sku_tier
   kubernetes_version  = var.kubernetes_version
@@ -48,7 +49,7 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     network_plugin    = "azure"
     network_policy    = var.network_policy
     load_balancer_sku = length(var.node_pools) > 0 ? "Standard" : var.load_balancer_sku
-    dynamic load_balancer_profile {
+    dynamic "load_balancer_profile" {
       for_each = azurerm_public_ip.public-ip-outbound
       content {
         outbound_ip_address_ids  = azurerm_public_ip.public-ip-outbound[*].id
