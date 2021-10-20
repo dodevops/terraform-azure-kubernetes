@@ -42,6 +42,7 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     azure_active_directory {
       managed                = true
       admin_group_object_ids = var.rbac_managed_admin_groups
+      azure_rbac_enabled     = var.rbac_enabled
     }
   }
 
