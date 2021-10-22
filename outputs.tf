@@ -45,3 +45,7 @@ output "client_token" {
 output "client_token_admin" {
   value = length(azurerm_kubernetes_cluster.k8s.kube_admin_config) > 0 ? azurerm_kubernetes_cluster.k8s.kube_admin_config[0].password : ""
 }
+
+output "public_outbound_ips" {
+  value = ["${azurerm_public_ip.public-ip-outbound.*.ip_address}"]
+}

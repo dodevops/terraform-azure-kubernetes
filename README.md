@@ -311,4 +311,8 @@ Description: n/a
 ### node\_resource\_group
 
 Description: n/a
+
+### public\_outbound\_ips
+
+Description: n/a
 <!-- END_TF_DOCS -->
