@@ -69,13 +69,12 @@ variable "node_storage" {
 variable "rbac_enabled" {
   type        = bool
   description = "Enables RBAC on the cluster. If true, rbac_managed_admin_groups have to be specified."
-  default     = false
+  default     = true
 }
 
 variable "rbac_managed_admin_groups" {
   type        = list(string)
   description = "The group IDs that have admin access to the cluster. Have to be specified if rbac_enabled is true"
-  default     = []
 }
 
 variable "default_node_pool_name" {
@@ -172,3 +171,7 @@ variable "ssh_public_key" {
   description = "SSH public key to access the kubernetes node with"
 }
 
+variable "api_server_ip_ranges" {
+  type        = list(string)
+  description = "The IP ranges to allow for incoming traffic to the server nodes. To disable the limitation, set an empty list as value."
+}
