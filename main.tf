@@ -11,14 +11,22 @@ locals {
   cluster_name = "${lower(var.project)}${lower(var.stage)}k8s"
 }
 
+# Log analytics required for OMS Agent result processing - usually other logging solutions are used. Hence the affected tfsec rule is
+# ignored here
+#
+# IP limit for API is not really ignored, since the variable requires to enter something. However one can decide to disable the limitation
+# and it would trigger the tfsec rule. Hence the affected tfsec rule is ignored here
+#
+#tfsec:ignore:azure-container-logging tfsec:ignore:azure-container-limit-authorized-ips
 resource "azurerm_kubernetes_cluster" "k8s" {
-  name                = local.cluster_name
-  location            = var.location
-  resource_group_name = var.resource_group
-  tags                = var.tags
-  dns_prefix          = var.dns_prefix == "NONE" ? local.cluster_name : var.dns_prefix
-  sku_tier            = var.sku_tier
-  kubernetes_version  = var.kubernetes_version
+  name                            = local.cluster_name
+  location                        = var.location
+  resource_group_name             = var.resource_group
+  tags                            = var.tags
+  dns_prefix                      = var.dns_prefix == "NONE" ? local.cluster_name : var.dns_prefix
+  sku_tier                        = var.sku_tier
+  kubernetes_version              = var.kubernetes_version
+  api_server_authorized_ip_ranges = var.api_server_ip_ranges
 
   default_node_pool {
     name                 = var.default_node_pool_name

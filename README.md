@@ -49,6 +49,12 @@ The following resources are used by this module:
 
 The following input variables are required:
 
+### api\_server\_ip\_ranges
+
+Description: The IP ranges to allow for incoming traffic to the server nodes. To disable the limitation, set an empty list as value.
+
+Type: `list(string)`
+
 ### client\_id
 
 Description: Azure client ID to use to manage Azure resources from the cluster, like f.e. load balancers
@@ -90,6 +96,12 @@ Type: `string`
 Description: Three letter project key
 
 Type: `string`
+
+### rbac\_managed\_admin\_groups
+
+Description: The group IDs that have admin access to the cluster. Have to be specified if rbac\_enabled is true
+
+Type: `list(string)`
 
 ### resource\_group
 
@@ -225,15 +237,7 @@ Description: Enables RBAC on the cluster. If true, rbac\_managed\_admin\_groups 
 
 Type: `bool`
 
-Default: `false`
-
-### rbac\_managed\_admin\_groups
-
-Description: The group IDs that have admin access to the cluster. Have to be specified if rbac\_enabled is true
-
-Type: `list(string)`
-
-Default: `[]`
+Default: `true`
 
 ### sku\_tier
 
