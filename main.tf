@@ -36,8 +36,8 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     os_disk_size_gb      = var.node_storage
     vnet_subnet_id       = var.subnet_id
     max_pods             = var.max_pods
-    availability_zones   = var.availability_zones
     orchestrator_version = var.default_node_pool_k8s_version
+    zones                = var.availability_zones
   }
 
   service_principal {
@@ -45,13 +45,11 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     client_secret = var.client_secret
   }
 
-  role_based_access_control {
-    enabled = var.rbac_enabled
-    azure_active_directory {
-      managed                = true
-      admin_group_object_ids = var.rbac_managed_admin_groups
-      azure_rbac_enabled     = var.rbac_enabled
-    }
+  role_based_access_control_enabled = var.rbac_enabled
+  azure_active_directory_role_based_access_control {
+    managed                = true
+    admin_group_object_ids = var.rbac_managed_admin_groups
+    azure_rbac_enabled     = var.rbac_enabled
   }
 
   network_profile {
@@ -90,7 +88,7 @@ resource "azurerm_kubernetes_cluster_node_pool" "additional" {
   orchestrator_version  = each.value.k8s_version
   mode                  = each.value.mode
   node_taints           = each.value.taints
-  availability_zones    = each.value.availability_zones
+  zones                 = each.value.availability_zones
 }
 
 resource "azurerm_public_ip" "public-ip-outbound" {
