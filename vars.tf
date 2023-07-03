@@ -24,16 +24,6 @@ variable "tags" {
   default     = {}
 }
 
-variable "client_id" {
-  type        = string
-  description = "Azure client ID to use to manage Azure resources from the cluster, like f.e. load balancers"
-}
-
-variable "client_secret" {
-  type        = string
-  description = "Azure client secret to use to manage Azure resources from the cluster, like f.e. load balancers"
-}
-
 variable "dns_prefix" {
   type        = string
   description = "DNS-Prefix to use. Defaults to cluster name"
