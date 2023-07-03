@@ -107,7 +107,7 @@ variable "node_pools" {
 
 variable "load_balancer_sku" {
   description = "The SKU for the used Load Balancer"
-  default     = "Basic"
+  default     = "basic"
 }
 
 variable "max_pods" {

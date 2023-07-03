@@ -55,7 +55,7 @@ resource "azurerm_kubernetes_cluster" "k8s" {
   network_profile {
     network_plugin    = "azure"
     network_policy    = var.network_policy
-    load_balancer_sku = length(var.node_pools) > 0 ? "Standard" : var.load_balancer_sku
+    load_balancer_sku = length(var.node_pools) > 0 ? "standard" : var.load_balancer_sku
     dynamic "load_balancer_profile" {
       for_each = azurerm_public_ip.public-ip-outbound
       content {
