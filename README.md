@@ -55,18 +55,6 @@ Description: The IP ranges to allow for incoming traffic to the server nodes. To
 
 Type: `list(string)`
 
-### client\_id
-
-Description: Azure client ID to use to manage Azure resources from the cluster, like f.e. load balancers
-
-Type: `string`
-
-### client\_secret
-
-Description: Azure client secret to use to manage Azure resources from the cluster, like f.e. load balancers
-
-Type: `string`
-
 ### default\_node\_pool\_k8s\_version
 
 Description: Version of kubernetes for the default node pool
@@ -175,7 +163,7 @@ Description: The SKU for the used Load Balancer
 
 Type: `string`
 
-Default: `"Basic"`
+Default: `"basic"`
 
 ### max\_pods
 

@@ -19,14 +19,13 @@ locals {
 #
 #tfsec:ignore:azure-container-logging tfsec:ignore:azure-container-limit-authorized-ips
 resource "azurerm_kubernetes_cluster" "k8s" {
-  name                            = local.cluster_name
-  location                        = var.location
-  resource_group_name             = var.resource_group
-  tags                            = var.tags
-  dns_prefix                      = var.dns_prefix == "NONE" ? local.cluster_name : var.dns_prefix
-  sku_tier                        = var.sku_tier
-  kubernetes_version              = var.kubernetes_version
-  api_server_authorized_ip_ranges = var.api_server_ip_ranges
+  name                = local.cluster_name
+  location            = var.location
+  resource_group_name = var.resource_group
+  tags                = var.tags
+  dns_prefix          = var.dns_prefix == "NONE" ? local.cluster_name : var.dns_prefix
+  sku_tier            = var.sku_tier
+  kubernetes_version  = var.kubernetes_version
 
   default_node_pool {
     name                 = var.default_node_pool_name
@@ -40,9 +39,12 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     zones                = var.availability_zones
   }
 
-  service_principal {
-    client_id     = var.client_id
-    client_secret = var.client_secret
+  api_server_access_profile {
+    authorized_ip_ranges = var.api_server_ip_ranges
+  }
+
+  identity {
+    type = "SystemAssigned"
   }
 
   role_based_access_control_enabled = var.rbac_enabled
@@ -55,7 +57,7 @@ resource "azurerm_kubernetes_cluster" "k8s" {
   network_profile {
     network_plugin    = "azure"
     network_policy    = var.network_policy
-    load_balancer_sku = length(var.node_pools) > 0 ? "Standard" : var.load_balancer_sku
+    load_balancer_sku = length(var.node_pools) > 0 ? "standard" : var.load_balancer_sku
     dynamic "load_balancer_profile" {
       for_each = azurerm_public_ip.public-ip-outbound
       content {
