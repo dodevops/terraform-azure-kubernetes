@@ -25,13 +25,21 @@ All "System" mode pools must be able to reach all pods/subnets
 
 ## Requirements
 
-No requirements.
+The following requirements are needed by this module:
+
+- terraform (>=1.0.0)
+
+- azuread (>=2.41.0)
+
+- azurerm (>=3.63.0)
 
 ## Providers
 
 The following providers are used by this module:
 
-- azurerm
+- azuread (>=2.41.0)
+
+- azurerm (>=3.63.0)
 
 ## Modules
 
@@ -41,9 +49,11 @@ No modules.
 
 The following resources are used by this module:
 
+- [azuread_group_member.k8smember](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/group_member) (resource)
 - [azurerm_kubernetes_cluster.k8s](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster) (resource)
 - [azurerm_kubernetes_cluster_node_pool.additional](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster_node_pool) (resource)
 - [azurerm_public_ip.public-ip-outbound](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/public_ip) (resource)
+- [azuread_group.ownersgroup](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/data-sources/group) (data source)
 
 ## Required Inputs
 
@@ -124,6 +134,21 @@ Type: `string`
 ## Optional Inputs
 
 The following input variables are optional (have default values):
+
+### add\_identity\_to\_group
+
+Description: The name of a group which is assigned to appropriate roles in the subscription to manage resources that are required by the AKS.  
+Setting this to a non empty string will add the AKS managed identity to this group.
+
+You need the following API permissions (with admin consent) on a service prinicpal to make this work:
+
+* Directory.Read.All
+* Group.Read.All
+* Group.ReadWrite.All
+
+Type: `string`
+
+Default: `""`
 
 ### availability\_zones
 
@@ -258,53 +283,63 @@ The following outputs are exported:
 
 ### client\_certificate
 
-Description: n/a
+Description: The Kubernetes client certificate for a kubectl config
 
 ### client\_certificate\_admin
 
-Description: n/a
+Description: The Kubernetes client certificate for an admin access
 
 ### client\_key
 
-Description: n/a
+Description: The Kubernetes client private key for a kubectl config
 
 ### client\_key\_admin
 
-Description: n/a
+Description: The Kubernetes client private key for an admin access
 
 ### client\_token
 
-Description: n/a
+Description: A client token for accessing the Cluster using kubectl
 
 ### client\_token\_admin
 
-Description: n/a
+Description: A client token for accessing the Cluster using kubectl with an admin access
 
 ### cluster\_ca\_certificate
 
-Description: n/a
+Description: The Kubernetes cluster ca certificate for a kubectl config
 
 ### cluster\_id
 
-Description: n/a
+Description: The AKS cluster id
 
 ### cluster\_name
 
-Description: n/a
+Description: The AKS cluster name
 
 ### fqdn
 
-Description: n/a
+Description: The FQDN to the Kubernetes API server
 
 ### host
 
-Description: n/a
+Description: The Kubernetes API host for a kubectl config
+
+### managed\_identity\_object\_id
+
+Description: The object ID of the service principal of the managed identity of the AKS
 
 ### node\_resource\_group
 
-Description: n/a
+Description: The resource group the Kubernetes nodes were created in
 
 ### public\_outbound\_ips
 
-Description: n/a
+Description: The outbound public IPs
 <!-- END_TF_DOCS -->
+
+## Development
+
+Use [the terraform module tools](https://github.com/dodevops/terraform-module-tools) to check and generate the documentation by running
+
+    docker run -v "$PWD":/terraform ghcr.io/dodevops/terraform-module-tools:latest
