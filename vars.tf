@@ -96,6 +96,7 @@ variable "node_pools" {
 }
 
 variable "load_balancer_sku" {
+  type        = string
   description = "The SKU for the used Load Balancer"
   default     = "basic"
 }
@@ -164,4 +165,19 @@ variable "ssh_public_key" {
 variable "api_server_ip_ranges" {
   type        = list(string)
   description = "The IP ranges to allow for incoming traffic to the server nodes. To disable the limitation, set an empty list as value."
+}
+
+variable "managed_identity_security_group" {
+  type        = string
+  default     = ""
+  description = <<-EOF
+    The name of a group which is assigned to appropriate roles in the subscription to manage resources that are required by the AKS.
+    Setting this to a non empty string will add the AKS managed identity to this group.
+
+    You need the following API permissions (with admin consent) on a service prinicpal to make this work:
+
+    * Directory.Read.All
+    * Group.Read.All
+    * Group.ReadWrite.All
+  EOF
 }
