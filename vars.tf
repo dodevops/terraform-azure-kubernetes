@@ -167,7 +167,7 @@ variable "api_server_ip_ranges" {
   description = "The IP ranges to allow for incoming traffic to the server nodes. To disable the limitation, set an empty list as value."
 }
 
-variable "add_identity_to_group" {
+variable "managed_identity_security_group" {
   type        = string
   default     = ""
   description = <<-EOF

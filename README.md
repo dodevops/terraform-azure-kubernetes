@@ -135,21 +135,6 @@ Type: `string`
 
 The following input variables are optional (have default values):
 
-### add\_identity\_to\_group
-
-Description: The name of a group which is assigned to appropriate roles in the subscription to manage resources that are required by the AKS.  
-Setting this to a non empty string will add the AKS managed identity to this group.
-
-You need the following API permissions (with admin consent) on a service prinicpal to make this work:
-
-* Directory.Read.All
-* Group.Read.All
-* Group.ReadWrite.All
-
-Type: `string`
-
-Default: `""`
-
 ### availability\_zones
 
 Description: availability zones to spread the cluster nodes across, if omitted, only one avilability zone is used
@@ -189,6 +174,21 @@ Description: The SKU for the used Load Balancer
 Type: `string`
 
 Default: `"basic"`
+
+### managed\_identity\_security\_group
+
+Description: The name of a group which is assigned to appropriate roles in the subscription to manage resources that are required by the AKS.  
+Setting this to a non empty string will add the AKS managed identity to this group.
+
+You need the following API permissions (with admin consent) on a service prinicpal to make this work:
+
+* Directory.Read.All
+* Group.Read.All
+* Group.ReadWrite.All
+
+Type: `string`
+
+Default: `""`
 
 ### max\_pods
 
