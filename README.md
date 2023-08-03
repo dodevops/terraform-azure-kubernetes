@@ -108,12 +108,6 @@ Description: Azure Resource Group to use
 
 Type: `string`
 
-### ssh\_public\_key
-
-Description: SSH public key to access the kubernetes node with
-
-Type: `string`
-
 ### stage
 
 Description: Stage for this ip
@@ -268,6 +262,14 @@ Description: n/a
 Type: `string`
 
 Default: `"Free"`
+
+### ssh\_public\_key
+
+Description: SSH public key to access the kubernetes node with
+
+Type: `string`
+
+Default: `""`
 
 ### static\_outbound\_ip\_count
 

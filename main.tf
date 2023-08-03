@@ -68,10 +68,13 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     }
   }
 
-  linux_profile {
-    admin_username = var.project
-    ssh_key {
-      key_data = var.ssh_public_key
+  dynamic "linux_profile" {
+    for_each = var.ssh_public_key == "" ? [] : [var.ssh_public_key]
+    content {
+      admin_username = var.project
+      ssh_key {
+        key_data = linux_profile.value
+      }
     }
   }
 }
