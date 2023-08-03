@@ -126,7 +126,7 @@ The following input variables are optional (have default values):
 
 ### api\_server\_ip\_ranges
 
-Description: The IP ranges to allow for incoming traffic to the server nodes. To disable the limitation, set an empty list as value.
+Description: The IP ranges to allow for incoming traffic to the server nodes. To disable the limitation, set an empty list as value (default).
 
 Type: `list(string)`
 
