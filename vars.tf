@@ -159,6 +159,7 @@ variable "idle_timeout" {
 
 variable "ssh_public_key" {
   type        = string
+  default     = ""
   description = "SSH public key to access the kubernetes node with"
 }
 
