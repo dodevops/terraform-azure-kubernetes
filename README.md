@@ -53,6 +53,7 @@ The following resources are used by this module:
 - [azurerm_kubernetes_cluster.k8s](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster) (resource)
 - [azurerm_kubernetes_cluster_node_pool.additional](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster_node_pool) (resource)
 - [azurerm_public_ip.public-ip-outbound](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/public_ip) (resource)
+- [azurerm_role_assignment.aksacr](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/role_assignment) (resource)
 - [azuread_group.ownersgroup](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/data-sources/group) (data source)
 
 ## Required Inputs
@@ -140,6 +141,14 @@ The following input variables are optional (have default values):
 Description: availability zones to spread the cluster nodes across, if omitted, only one avilability zone is used
 
 Type: `list(number)`
+
+Default: `[]`
+
+### azure\_container\_registry\_ids
+
+Description: IDs of the azure container registries that the AKS should have pull access to
+
+Type: `list(string)`
 
 Default: `[]`
 

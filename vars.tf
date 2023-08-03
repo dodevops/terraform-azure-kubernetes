@@ -181,3 +181,11 @@ variable "managed_identity_security_group" {
     * Group.ReadWrite.All
   EOF
 }
+
+variable "azure_container_registry_ids" {
+  type        = list(string)
+  default     = []
+  description = <<-EOF
+    IDs of the azure container registries that the AKS should have pull access to
+  EOF
+}
