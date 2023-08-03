@@ -166,6 +166,7 @@ variable "ssh_public_key" {
 variable "api_server_ip_ranges" {
   type        = list(string)
   description = "The IP ranges to allow for incoming traffic to the server nodes. To disable the limitation, set an empty list as value."
+  default     = []
 }
 
 variable "managed_identity_security_group" {

@@ -60,12 +60,6 @@ The following resources are used by this module:
 
 The following input variables are required:
 
-### api\_server\_ip\_ranges
-
-Description: The IP ranges to allow for incoming traffic to the server nodes. To disable the limitation, set an empty list as value.
-
-Type: `list(string)`
-
 ### default\_node\_pool\_k8s\_version
 
 Description: Version of kubernetes for the default node pool
@@ -129,6 +123,14 @@ Type: `string`
 ## Optional Inputs
 
 The following input variables are optional (have default values):
+
+### api\_server\_ip\_ranges
+
+Description: The IP ranges to allow for incoming traffic to the server nodes. To disable the limitation, set an empty list as value.
+
+Type: `list(string)`
+
+Default: `[]`
 
 ### availability\_zones
 
