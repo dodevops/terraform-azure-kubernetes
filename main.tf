@@ -39,8 +39,11 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     zones                = var.availability_zones
   }
 
-  api_server_access_profile {
-    authorized_ip_ranges = var.api_server_ip_ranges
+  dynamic "api_server_access_profile" {
+    for_each = length(var.api_server_ip_ranges) > 0 ? [var.api_server_ip_ranges] : []
+    content {
+      authorized_ip_ranges = api_server_access_profile.value
+    }
   }
 
   identity {
