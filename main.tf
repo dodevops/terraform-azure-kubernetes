@@ -9,6 +9,7 @@
 
 locals {
   cluster_name = "${lower(var.project)}${lower(var.stage)}k8s"
+  has_automatic_channel_upgrade_maintenance_window = var.automatic_channel_upgrade != "none" ? [var.automatic_channel_upgrade] : []
 }
 
 # Log analytics required for OMS Agent result processing - usually other logging solutions are used. Hence the affected tfsec rule is
@@ -26,6 +27,19 @@ resource "azurerm_kubernetes_cluster" "k8s" {
   dns_prefix          = var.dns_prefix == "NONE" ? local.cluster_name : var.dns_prefix
   sku_tier            = var.sku_tier
   kubernetes_version  = var.kubernetes_version
+
+  automatic_channel_upgrade = var.automatic_channel_upgrade != "none" ? var.automatic_channel_upgrade : null
+  dynamic "maintenance_window_auto_upgrade" {
+  for_each = local.has_automatic_channel_upgrade_maintenance_window
+    content {
+      frequency               = "Weekly"
+      interval                = "1"
+      duration                = var.maintenance_window_auto_upgrade_duration
+      day_of_week             = var.maintenance_window_auto_upgrade_day_of_week
+      start_time              = var.maintenance_window_auto_upgrade_start_time
+      utc_offset              = var.maintenance_window_auto_upgrade_utc_offset
+    }
+  }
 
   default_node_pool {
     name                 = var.default_node_pool_name
