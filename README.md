@@ -132,6 +132,15 @@ Type: `list(string)`
 
 Default: `[]`
 
+### automatic\_channel\_upgrade
+
+Description: Values: none, patch, stable, rapid, node-image
+for further information see https://learn.microsoft.com/en-us/azure/aks/auto-upgrade-cluster
+
+Type: `string`
+
+Default: `none`
+
 ### availability\_zones
 
 Description: availability zones to spread the cluster nodes across, if omitted, only one avilability zone is used
@@ -194,6 +203,42 @@ You need the following API permissions (with admin consent) on a service prinicp
 Type: `string`
 
 Default: `""`
+
+### maintenance\_window\_auto\_upgrade\_day\_of\_week
+
+Description: The maintenance window is automatically, if automatic\_channel\_upgrade != none
+for values see https://learn.microsoft.com/en-us/azure/aks/planned-maintenance#creating-a-maintenance-window
+
+Type: `string`
+
+Default: `"Monday"`
+
+### maintenance\_window\_auto\_upgrade\_duration
+
+Description: The maintenance window is automatically, if automatic\_channel\_upgrade != none
+for values see https://learn.microsoft.com/en-us/azure/aks/planned-maintenance#creating-a-maintenance-window
+
+Type: `string`
+
+Default: `"4"`
+
+### maintenance\_window\_auto\_upgrade\_start\_time
+
+Description: The maintenance window is automatically, if automatic\_channel\_upgrade != none
+for values see https://learn.microsoft.com/en-us/azure/aks/planned-maintenance#creating-a-maintenance-window
+
+Type: `string`
+
+Default: `"04:00"`
+
+### maintenance\_window\_auto\_upgrade\_utc\_offset
+
+Description: The maintenance window is automatically, if automatic\_channel\_upgrade != none
+for values see https://learn.microsoft.com/en-us/azure/aks/planned-maintenance#creating-a-maintenance-window
+
+Type: `string`
+
+Default: `"+00:00"`
 
 ### max\_pods
 
