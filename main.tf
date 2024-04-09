@@ -8,7 +8,7 @@
  */
 
 locals {
-  cluster_name = "${lower(var.project)}${lower(var.stage)}k8s"
+  cluster_name                                     = "${lower(var.project)}${lower(var.stage)}k8s"
   has_automatic_channel_upgrade_maintenance_window = var.automatic_channel_upgrade != "none" ? [var.automatic_channel_upgrade] : []
 }
 
@@ -30,27 +30,28 @@ resource "azurerm_kubernetes_cluster" "k8s" {
 
   automatic_channel_upgrade = var.automatic_channel_upgrade != "none" ? var.automatic_channel_upgrade : null
   dynamic "maintenance_window_auto_upgrade" {
-  for_each = local.has_automatic_channel_upgrade_maintenance_window
+    for_each = local.has_automatic_channel_upgrade_maintenance_window
     content {
-      frequency               = "Weekly"
-      interval                = "1"
-      duration                = var.maintenance_window_auto_upgrade_duration
-      day_of_week             = var.maintenance_window_auto_upgrade_day_of_week
-      start_time              = var.maintenance_window_auto_upgrade_start_time
-      utc_offset              = var.maintenance_window_auto_upgrade_utc_offset
+      frequency   = "Weekly"
+      interval    = "1"
+      duration    = var.maintenance_window_auto_upgrade_duration
+      day_of_week = var.maintenance_window_auto_upgrade_day_of_week
+      start_time  = var.maintenance_window_auto_upgrade_start_time
+      utc_offset  = var.maintenance_window_auto_upgrade_utc_offset
     }
   }
 
   default_node_pool {
-    name                 = var.default_node_pool_name
-    type                 = "VirtualMachineScaleSets"
-    node_count           = var.node_count
-    vm_size              = var.vm_size
-    os_disk_size_gb      = var.node_storage
-    vnet_subnet_id       = var.subnet_id
-    max_pods             = var.max_pods
-    orchestrator_version = var.default_node_pool_k8s_version
-    zones                = var.availability_zones
+    name                        = var.default_node_pool_name
+    type                        = "VirtualMachineScaleSets"
+    node_count                  = var.node_count
+    vm_size                     = var.vm_size
+    os_disk_size_gb             = var.node_storage
+    vnet_subnet_id              = var.subnet_id
+    max_pods                    = var.max_pods
+    orchestrator_version        = var.default_node_pool_k8s_version
+    zones                       = var.availability_zones
+    temporary_name_for_rotation = var.temporary_name_for_rotation
   }
 
   dynamic "api_server_access_profile" {
