@@ -113,6 +113,12 @@ variable "availability_zones" {
   default     = []
 }
 
+variable "temporary_name_for_rotation" {
+  type = string
+  description = "Specifies the name of the temporary node pool used to cycle the default node pool for VM resizing."
+  default = "default_rotation_tmp"
+}
+
 variable "sku_tier" {
   type    = string
   default = "Free"
