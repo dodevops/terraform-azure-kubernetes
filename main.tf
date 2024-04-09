@@ -52,6 +52,9 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     orchestrator_version        = var.default_node_pool_k8s_version
     zones                       = var.availability_zones
     temporary_name_for_rotation = var.temporary_name_for_rotation
+    enable_auto_scaling         = var.auto_scaling_enable
+    min_count                   = var.auto_scaling_min_node_count
+    max_count                   = var.auto_scaling_max_node_count
   }
 
   dynamic "api_server_access_profile" {
