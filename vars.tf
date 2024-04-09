@@ -92,7 +92,24 @@ variable "node_pools" {
   }))
   default     = {}
   description = "Additional node pools to set up"
+}
 
+variable "auto_scaling_enable" {
+  type = bool
+  description = "Enable auto scaling of node pool"
+  default = false
+}
+
+variable "auto_scaling_min_node_count" {
+  type = string
+  description = "Enable auto scaling of node pool"
+  default = "1"
+}
+
+variable "auto_scaling_max_node_count" {
+  type = string
+  description = "Enable auto scaling of node pool"
+  default = "1"
 }
 
 variable "load_balancer_sku" {
