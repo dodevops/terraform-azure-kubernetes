@@ -95,21 +95,21 @@ variable "node_pools" {
 }
 
 variable "auto_scaling_enable" {
-  type = bool
-  description = "Enable auto scaling of node pool"
-  default = false
+  type        = bool
+  description = "Enable auto-scaling of node pool"
+  default     = false
 }
 
 variable "auto_scaling_min_node_count" {
-  type = string
-  description = "Enable auto scaling of node pool"
-  default = "1"
+  type        = string
+  description = "Enable auto-scaling of node pool"
+  default     = "1"
 }
 
 variable "auto_scaling_max_node_count" {
-  type = string
-  description = "Enable auto scaling of node pool"
-  default = "1"
+  type        = string
+  description = "Enable auto-scaling of node pool"
+  default     = "1"
 }
 
 variable "load_balancer_sku" {
@@ -131,9 +131,9 @@ variable "availability_zones" {
 }
 
 variable "temporary_name_for_rotation" {
-  type = string
+  type        = string
   description = "Specifies the name of the temporary node pool used to cycle the default node pool for VM resizing."
-  default = "rotationtmp"
+  default     = "rotationtmp"
 }
 
 variable "sku_tier" {
@@ -228,7 +228,7 @@ variable "automatic_channel_upgrade" {
 variable "maintenance_window_auto_upgrade_day_of_week" {
   type        = string
   default     = "Monday"
-  description  =  <<-EOF
+  description = <<-EOF
     see https://learn.microsoft.com/en-us/azure/aks/planned-maintenance#creating-a-maintenance-window
   EOF
 }
@@ -236,7 +236,7 @@ variable "maintenance_window_auto_upgrade_day_of_week" {
 variable "maintenance_window_auto_upgrade_duration" {
   type        = string
   default     = "4"
-  description  =  <<-EOF
+  description = <<-EOF
     see https://learn.microsoft.com/en-us/azure/aks/planned-maintenance#creating-a-maintenance-window
   EOF
 }
@@ -244,7 +244,7 @@ variable "maintenance_window_auto_upgrade_duration" {
 variable "maintenance_window_auto_upgrade_start_time" {
   type        = string
   default     = "04:00"
-  description  =  <<-EOF
+  description = <<-EOF
     Example: "04:00"
     see https://learn.microsoft.com/en-us/azure/aks/planned-maintenance#creating-a-maintenance-window
   EOF
@@ -253,7 +253,7 @@ variable "maintenance_window_auto_upgrade_start_time" {
 variable "maintenance_window_auto_upgrade_utc_offset" {
   type        = string
   default     = "+00:00"
-  description  =  <<-EOF
+  description = <<-EOF
     Example: "+00:00"
     see https://learn.microsoft.com/en-us/azure/aks/planned-maintenance#creating-a-maintenance-window
   EOF
