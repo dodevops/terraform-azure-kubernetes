@@ -132,14 +132,39 @@ Type: `list(string)`
 
 Default: `[]`
 
-### automatic\_channel\_upgrade
+### auto\_scaling\_enable
 
-Description: Values: none, patch, stable, rapid, node-image
-for further information see https://learn.microsoft.com/en-us/azure/aks/auto-upgrade-cluster
+Description: Enable auto-scaling of node pool
+
+Type: `bool`
+
+Default: `false`
+
+### auto\_scaling\_max\_node\_count
+
+Description: Enable auto-scaling of node pool
 
 Type: `string`
 
-Default: `none`
+Default: `"1"`
+
+### auto\_scaling\_min\_node\_count
+
+Description: Enable auto-scaling of node pool
+
+Type: `string`
+
+Default: `"1"`
+
+### automatic\_channel\_upgrade
+
+Description: Values:  
+none, patch, stable, rapid, node-image  
+see https://learn.microsoft.com/en-us/azure/aks/auto-upgrade-cluster
+
+Type: `string`
+
+Default: `"none"`
 
 ### availability\_zones
 
@@ -189,6 +214,40 @@ Type: `string`
 
 Default: `"basic"`
 
+### maintenance\_window\_auto\_upgrade\_day\_of\_week
+
+Description: see https://learn.microsoft.com/en-us/azure/aks/planned-maintenance#creating-a-maintenance-window
+
+Type: `string`
+
+Default: `"Monday"`
+
+### maintenance\_window\_auto\_upgrade\_duration
+
+Description: see https://learn.microsoft.com/en-us/azure/aks/planned-maintenance#creating-a-maintenance-window
+
+Type: `string`
+
+Default: `"4"`
+
+### maintenance\_window\_auto\_upgrade\_start\_time
+
+Description: Example: "04:00"  
+see https://learn.microsoft.com/en-us/azure/aks/planned-maintenance#creating-a-maintenance-window
+
+Type: `string`
+
+Default: `"04:00"`
+
+### maintenance\_window\_auto\_upgrade\_utc\_offset
+
+Description: Example: "+00:00"  
+see https://learn.microsoft.com/en-us/azure/aks/planned-maintenance#creating-a-maintenance-window
+
+Type: `string`
+
+Default: `"+00:00"`
+
 ### managed\_identity\_security\_group
 
 Description: The name of a group which is assigned to appropriate roles in the subscription to manage resources that are required by the AKS.  
@@ -203,42 +262,6 @@ You need the following API permissions (with admin consent) on a service prinicp
 Type: `string`
 
 Default: `""`
-
-### maintenance\_window\_auto\_upgrade\_day\_of\_week
-
-Description: The maintenance window is automatically, if automatic\_channel\_upgrade != none
-for values see https://learn.microsoft.com/en-us/azure/aks/planned-maintenance#creating-a-maintenance-window
-
-Type: `string`
-
-Default: `"Monday"`
-
-### maintenance\_window\_auto\_upgrade\_duration
-
-Description: The maintenance window is automatically, if automatic\_channel\_upgrade != none
-for values see https://learn.microsoft.com/en-us/azure/aks/planned-maintenance#creating-a-maintenance-window
-
-Type: `string`
-
-Default: `"4"`
-
-### maintenance\_window\_auto\_upgrade\_start\_time
-
-Description: The maintenance window is automatically, if automatic\_channel\_upgrade != none
-for values see https://learn.microsoft.com/en-us/azure/aks/planned-maintenance#creating-a-maintenance-window
-
-Type: `string`
-
-Default: `"04:00"`
-
-### maintenance\_window\_auto\_upgrade\_utc\_offset
-
-Description: The maintenance window is automatically, if automatic\_channel\_upgrade != none
-for values see https://learn.microsoft.com/en-us/azure/aks/planned-maintenance#creating-a-maintenance-window
-
-Type: `string`
-
-Default: `"+00:00"`
 
 ### max\_pods
 
@@ -334,6 +357,14 @@ Description: Map of tags for the resources
 Type: `map(any)`
 
 Default: `{}`
+
+### temporary\_name\_for\_rotation
+
+Description: Specifies the name of the temporary node pool used to cycle the default node pool for VM resizing.
+
+Type: `string`
+
+Default: `"rotationtmp"`
 
 ## Outputs
 
