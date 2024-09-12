@@ -9,7 +9,9 @@
 
 locals {
   cluster_name                                     = "${lower(var.project)}${lower(var.stage)}k8s"
-  has_automatic_channel_upgrade_maintenance_window = var.automatic_channel_upgrade != "none" ? [var.automatic_channel_upgrade] : []
+  has_automatic_channel_upgrade_maintenance_window = var.automatic_upgrade_channel != "none" ? [
+    var.automatic_upgrade_channel
+  ] : []
 }
 
 # Log analytics required for OMS Agent result processing - usually other logging solutions are used. Hence the affected tfsec rule is
@@ -28,7 +30,11 @@ resource "azurerm_kubernetes_cluster" "k8s" {
   sku_tier            = var.sku_tier
   kubernetes_version  = var.kubernetes_version
 
-  automatic_channel_upgrade = var.automatic_channel_upgrade != "none" ? var.automatic_channel_upgrade : null
+  image_cleaner_enabled        = var.image_cleaner_enabled
+  image_cleaner_interval_hours = var.image_cleaner_interval_hours
+
+  automatic_upgrade_channel = var.automatic_upgrade_channel != "none" ? var.automatic_upgrade_channel : null
+
   dynamic "maintenance_window_auto_upgrade" {
     for_each = local.has_automatic_channel_upgrade_maintenance_window
     content {
@@ -52,7 +58,7 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     orchestrator_version        = var.default_node_pool_k8s_version
     zones                       = var.availability_zones
     temporary_name_for_rotation = var.temporary_name_for_rotation
-    enable_auto_scaling         = var.auto_scaling_enable
+    auto_scaling_enabled        = var.auto_scaling_enabled
     min_count                   = var.auto_scaling_min_node_count
     max_count                   = var.auto_scaling_max_node_count
   }
@@ -70,7 +76,6 @@ resource "azurerm_kubernetes_cluster" "k8s" {
 
   role_based_access_control_enabled = var.rbac_enabled
   azure_active_directory_role_based_access_control {
-    managed                = true
     admin_group_object_ids = var.rbac_managed_admin_groups
     azure_rbac_enabled     = var.rbac_enabled
   }
