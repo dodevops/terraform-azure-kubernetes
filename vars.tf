@@ -94,7 +94,7 @@ variable "node_pools" {
   description = "Additional node pools to set up"
 }
 
-variable "auto_scaling_enable" {
+variable "auto_scaling_enabled" {
   type        = bool
   description = "Enable auto-scaling of node pool"
   default     = false
@@ -215,7 +215,19 @@ variable "azure_container_registry_ids" {
   EOF
 }
 
-variable "automatic_channel_upgrade" {
+variable "image_cleaner_enabled" {
+  description = "Azure default settings"
+  type        = bool
+  default     = false
+}
+
+variable "image_cleaner_interval_hours" {
+  description = "Azure default settings"
+  type        = number
+  default     = 48
+}
+
+variable "automatic_upgrade_channel" {
   type        = string
   default     = "none"
   description = <<-EOF
