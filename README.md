@@ -190,6 +190,22 @@ Type: `string`
 
 Default: `"default"`
 
+### default\_node\_pool\_upgrade\_settings\_enabled
+
+Description: default upgrade settings is added to default node pool
+
+Type: `boolean`
+
+Default: `false`
+
+### default\_node\_pool\_upgrade\_settings\_max\_surge
+
+Description: max surge of upgrade settings for default node pool
+
+Type: `string`
+
+Default: `"10%"`
+
 ### dns\_prefix
 
 Description: DNS-Prefix to use. Defaults to cluster name

@@ -270,3 +270,21 @@ variable "maintenance_window_auto_upgrade_utc_offset" {
     see https://learn.microsoft.com/en-us/azure/aks/planned-maintenance#creating-a-maintenance-window
   EOF
 }
+
+variable "default_node_pool_upgrade_settings_enabled" {
+  type        = bool
+  default     = false
+  description = <<-EOF
+    Values:
+    false, true
+  EOF
+}
+
+variable "default_node_pool_upgrade_settings_max_surge" {
+  type        = string
+  default     = "10%"
+  description = <<-EOF
+    Example: "10%"
+    see https://learn.microsoft.com/en-us/azure/aks/upgrade-aks-cluster?tabs=azure-cli#customize-node-surge-upgrade
+  EOF
+}

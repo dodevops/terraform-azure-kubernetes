@@ -12,6 +12,9 @@ locals {
   has_automatic_channel_upgrade_maintenance_window = var.automatic_upgrade_channel != "none" ? [
     var.automatic_upgrade_channel
   ] : []
+  has_default_node_pool_upgrade_settings = var.default_node_pool_upgrade_settings_enabled == true ? [
+    var.default_node_pool_upgrade_settings_enabled
+  ] : []
 }
 
 # Log analytics required for OMS Agent result processing - usually other logging solutions are used. Hence the affected tfsec rule is
@@ -61,6 +64,12 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     auto_scaling_enabled        = var.auto_scaling_enabled
     min_count                   = var.auto_scaling_min_node_count
     max_count                   = var.auto_scaling_max_node_count
+    dynamic "upgrade_settings" {
+      for_each = local.has_default_node_pool_upgrade_settings
+      content {
+        max_surge               = var.default_node_pool_upgrade_settings_max_surge
+      }
+    }
   }
 
   dynamic "api_server_access_profile" {
