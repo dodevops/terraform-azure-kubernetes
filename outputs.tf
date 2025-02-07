@@ -67,3 +67,7 @@ output "managed_identity_object_id" {
   value       = azurerm_kubernetes_cluster.k8s.identity[0].principal_id
   description = "The object ID of the service principal of the managed identity of the AKS"
 }
+
+output "node_count" {
+  value = var.node_count
+}
