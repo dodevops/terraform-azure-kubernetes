@@ -142,6 +142,10 @@ variable "availability_zones" {
 variable "temporary_name_for_rotation" {
   type        = string
   description = "Specifies the name of the temporary node pool used to cycle the default node pool for VM resizing."
+  validation {
+    condition     = var.temporary_name_for_rotation != null
+    error_message = "The temporary_name_for_rotation value must not be null"
+  }
   default     = "rotationtmp"
 }
 
