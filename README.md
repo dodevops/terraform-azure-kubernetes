@@ -124,6 +124,15 @@ Type: `string`
 
 The following input variables are optional (have default values):
 
+### ad\_rbac\_enabled
+
+Description: Defines RBAC for block azure\_active\_directory\_role\_based\_access\_control explicitly if set.  
+Else RBAC for block azure\_active\_directory\_role\_based\_access\_control is set by "rbac\_enabled"
+
+Type: `bool`
+
+Default: `null`
+
 ### api\_server\_ip\_ranges
 
 Description: The IP ranges to allow for incoming traffic to the server nodes. To disable the limitation, set an empty list as value (default).
@@ -132,7 +141,7 @@ Type: `list(string)`
 
 Default: `[]`
 
-### auto\_scaling\_enable
+### auto\_scaling\_enabled
 
 Description: Enable auto-scaling of node pool
 
@@ -156,7 +165,7 @@ Type: `string`
 
 Default: `"1"`
 
-### automatic\_channel\_upgrade
+### automatic\_upgrade\_channel
 
 Description: Values:  
 none, patch, stable, rapid, node-image  
@@ -192,15 +201,17 @@ Default: `"default"`
 
 ### default\_node\_pool\_upgrade\_settings\_enabled
 
-Description: default upgrade settings is added to default node pool
+Description: Values:  
+false, true
 
-Type: `boolean`
+Type: `bool`
 
 Default: `false`
 
 ### default\_node\_pool\_upgrade\_settings\_max\_surge
 
-Description: max surge of upgrade settings for default node pool
+Description: Example: "10%"  
+see https://learn.microsoft.com/en-us/azure/aks/upgrade-aks-cluster?tabs=azure-cli#customize-node-surge-upgrade
 
 Type: `string`
 
@@ -221,6 +232,22 @@ Description: Desired outbound flow idle timeout in minutes for the cluster load 
 Type: `number`
 
 Default: `5`
+
+### image\_cleaner\_enabled
+
+Description: Azure default settings
+
+Type: `bool`
+
+Default: `false`
+
+### image\_cleaner\_interval\_hours
+
+Description: Azure default settings
+
+Type: `number`
+
+Default: `48`
 
 ### load\_balancer\_sku
 
@@ -433,6 +460,10 @@ Description: The Kubernetes API host for a kubectl config
 ### managed\_identity\_object\_id
 
 Description: The object ID of the service principal of the managed identity of the AKS
+
+### node\_count
+
+Description: n/a
 
 ### node\_resource\_group
 

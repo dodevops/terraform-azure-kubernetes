@@ -8,7 +8,7 @@
  */
 
 locals {
-  cluster_name                                     = "${lower(var.project)}${lower(var.stage)}k8s"
+  cluster_name = "${lower(var.project)}${lower(var.stage)}k8s"
   has_automatic_channel_upgrade_maintenance_window = var.automatic_upgrade_channel != "none" ? [
     var.automatic_upgrade_channel
   ] : []
@@ -67,7 +67,7 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     dynamic "upgrade_settings" {
       for_each = local.has_default_node_pool_upgrade_settings
       content {
-        max_surge               = var.default_node_pool_upgrade_settings_max_surge
+        max_surge = var.default_node_pool_upgrade_settings_max_surge
       }
     }
   }
@@ -86,7 +86,7 @@ resource "azurerm_kubernetes_cluster" "k8s" {
   role_based_access_control_enabled = var.rbac_enabled
   azure_active_directory_role_based_access_control {
     admin_group_object_ids = var.rbac_managed_admin_groups
-    azure_rbac_enabled     = var.rbac_enabled
+    azure_rbac_enabled     = var.ad_rbac_enabled != null ? var.ad_rbac_enabled : var.rbac_enabled
   }
 
   network_profile {

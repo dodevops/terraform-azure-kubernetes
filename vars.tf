@@ -62,6 +62,15 @@ variable "rbac_enabled" {
   default     = true
 }
 
+variable "ad_rbac_enabled" {
+  type        = bool
+  description = <<-EOF
+    Defines RBAC for block azure_active_directory_role_based_access_control explicitly if set.
+    Else RBAC for block azure_active_directory_role_based_access_control is set by "rbac_enabled"
+  EOF
+  default     = null
+}
+
 variable "rbac_managed_admin_groups" {
   type        = list(string)
   description = "The group IDs that have admin access to the cluster. Have to be specified if rbac_enabled is true"
