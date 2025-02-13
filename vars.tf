@@ -146,7 +146,7 @@ variable "temporary_name_for_rotation" {
     condition     = var.temporary_name_for_rotation != null
     error_message = "The temporary_name_for_rotation value must not be null"
   }
-  default     = "rotationtmp"
+  default = "rotationtmp"
 }
 
 variable "sku_tier" {

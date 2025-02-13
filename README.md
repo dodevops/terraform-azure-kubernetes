@@ -201,8 +201,7 @@ Default: `"default"`
 
 ### default\_node\_pool\_upgrade\_settings\_enabled
 
-Description: Values:  
-false, true
+Description: If true, an upgrade\_settings block will be added to default\_node\_pool.
 
 Type: `bool`
 
@@ -210,7 +209,8 @@ Default: `false`
 
 ### default\_node\_pool\_upgrade\_settings\_max\_surge
 
-Description: Example: "10%"  
+Description: max\_surge is a required parameter for an upgrade\_settings block  
+Example: "10%"  
 see https://learn.microsoft.com/en-us/azure/aks/upgrade-aks-cluster?tabs=azure-cli#customize-node-surge-upgrade
 
 Type: `string`
