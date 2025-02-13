@@ -288,8 +288,7 @@ variable "default_node_pool_upgrade_settings_enabled" {
   type        = bool
   default     = false
   description = <<-EOF
-    Values:
-    false, true
+    If true, an upgrade_settings block will be added to default_node_pool.
   EOF
 }
 
@@ -297,6 +296,7 @@ variable "default_node_pool_upgrade_settings_max_surge" {
   type        = string
   default     = "10%"
   description = <<-EOF
+    max_surge is a required parameter for an upgrade_settings block
     Example: "10%"
     see https://learn.microsoft.com/en-us/azure/aks/upgrade-aks-cluster?tabs=azure-cli#customize-node-surge-upgrade
   EOF
