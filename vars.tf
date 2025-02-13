@@ -62,6 +62,15 @@ variable "rbac_enabled" {
   default     = true
 }
 
+variable "ad_rbac_enabled" {
+  type        = bool
+  description = <<-EOF
+    Defines RBAC for block azure_active_directory_role_based_access_control explicitly if set.
+    Else RBAC for block azure_active_directory_role_based_access_control is set by "rbac_enabled"
+  EOF
+  default     = null
+}
+
 variable "rbac_managed_admin_groups" {
   type        = list(string)
   description = "The group IDs that have admin access to the cluster. Have to be specified if rbac_enabled is true"
@@ -133,6 +142,10 @@ variable "availability_zones" {
 variable "temporary_name_for_rotation" {
   type        = string
   description = "Specifies the name of the temporary node pool used to cycle the default node pool for VM resizing."
+  validation {
+    condition     = var.temporary_name_for_rotation != null
+    error_message = "The temporary_name_for_rotation value must not be null"
+  }
   default     = "rotationtmp"
 }
 
@@ -268,5 +281,23 @@ variable "maintenance_window_auto_upgrade_utc_offset" {
   description = <<-EOF
     Example: "+00:00"
     see https://learn.microsoft.com/en-us/azure/aks/planned-maintenance#creating-a-maintenance-window
+  EOF
+}
+
+variable "default_node_pool_upgrade_settings_enabled" {
+  type        = bool
+  default     = false
+  description = <<-EOF
+    If true, an upgrade_settings block will be added to default_node_pool.
+  EOF
+}
+
+variable "default_node_pool_upgrade_settings_max_surge" {
+  type        = string
+  default     = "10%"
+  description = <<-EOF
+    max_surge is a required parameter for an upgrade_settings block
+    Example: "10%"
+    see https://learn.microsoft.com/en-us/azure/aks/upgrade-aks-cluster?tabs=azure-cli#customize-node-surge-upgrade
   EOF
 }
