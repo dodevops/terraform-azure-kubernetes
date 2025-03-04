@@ -301,3 +301,31 @@ variable "default_node_pool_upgrade_settings_max_surge" {
     see https://learn.microsoft.com/en-us/azure/aks/upgrade-aks-cluster?tabs=azure-cli#customize-node-surge-upgrade
   EOF
 }
+
+variable "default_node_pool_upgrade_settings_drain_timeout_in_minutes" {
+  type        = number
+  description = <<-EOF
+    drain_timeout_in_minutes is a optional parameter for an upgrade_settings block
+    Example: "30"
+    see https://learn.microsoft.com/en-us/azure/aks/upgrade-aks-cluster?tabs=azure-cli#set-node-drain-timeout-value
+  EOF
+  validation {
+    condition     = var.default_node_pool_upgrade_settings_drain_timeout_in_minutes >= 0 && var.default_node_pool_upgrade_settings_drain_timeout_in_minutes <= 60
+    error_message = "default_node_pool_upgrade_settings_drain_timeout_in_minutes has to be between 0 and 60 including."
+  }
+  default = 30
+}
+
+variable "default_node_pool_node_soak_duration_in_minutes" {
+  type        = number
+  description = <<-EOF
+    soak_duration_in_minutes is a optional parameter for an upgrade_settings block
+    Example: "30"
+    see https://learn.microsoft.com/en-us/azure/aks/upgrade-aks-cluster?tabs=azure-cli#set-node-soak-time-value
+  EOF
+  validation {
+    condition     = var.default_node_pool_node_soak_duration_in_minutes >= 0 && var.default_node_pool_node_soak_duration_in_minutes <= 60
+    error_message = "default_node_pool_node_soak_duration_in_minutes has to be between 0 and 60 including."
+  }
+  default = 0
+}
