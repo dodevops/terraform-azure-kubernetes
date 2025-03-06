@@ -67,7 +67,9 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     dynamic "upgrade_settings" {
       for_each = local.has_default_node_pool_upgrade_settings
       content {
-        max_surge = var.default_node_pool_upgrade_settings_max_surge
+        max_surge                     = var.default_node_pool_upgrade_settings_max_surge
+        drain_timeout_in_minutes      = var.default_node_pool_upgrade_settings_drain_timeout_in_minutes
+        node_soak_duration_in_minutes = var.default_node_pool_node_soak_duration_in_minutes
       }
     }
   }

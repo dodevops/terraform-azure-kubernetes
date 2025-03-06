@@ -199,6 +199,26 @@ Type: `string`
 
 Default: `"default"`
 
+### default\_node\_pool\_node\_soak\_duration\_in\_minutes
+
+Description: soak\_duration\_in\_minutes is a optional parameter for an upgrade\_settings block  
+Example: "30"  
+see https://learn.microsoft.com/en-us/azure/aks/upgrade-aks-cluster?tabs=azure-cli#set-node-soak-time-value
+
+Type: `number`
+
+Default: `0`
+
+### default\_node\_pool\_upgrade\_settings\_drain\_timeout\_in\_minutes
+
+Description: drain\_timeout\_in\_minutes is a optional parameter for an upgrade\_settings block  
+Example: "30"  
+see https://learn.microsoft.com/en-us/azure/aks/upgrade-aks-cluster?tabs=azure-cli#set-node-drain-timeout-value
+
+Type: `number`
+
+Default: `30`
+
 ### default\_node\_pool\_upgrade\_settings\_enabled
 
 Description: If true, an upgrade\_settings block will be added to default\_node\_pool.
