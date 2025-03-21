@@ -413,6 +413,38 @@ Type: `number`
 
 Default: `0`
 
+### storage\_profile\_blob\_driver\_enabled
+
+Description: Is the Blob CSI driver enabled?
+
+Type: `bool`
+
+Default: `false`
+
+### storage\_profile\_disk\_driver\_enabled
+
+Description: Is the Disk CSI driver enabled?
+
+Type: `bool`
+
+Default: `true`
+
+### storage\_profile\_file\_driver\_enabled
+
+Description: Is the File CSI driver enabled?
+
+Type: `bool`
+
+Default: `true`
+
+### storage\_profile\_snapshot\_controller\_enabled
+
+Description: Is the Snapshot Controller enabled?
+
+Type: `bool`
+
+Default: `true`
+
 ### tags
 
 Description: Map of tags for the resources
