@@ -105,6 +105,13 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     }
   }
 
+  storage_profile {
+    blob_driver_enabled         = var.storage_profile_blob_driver_enabled
+    disk_driver_enabled         = var.storage_profile_disk_driver_enabled
+    file_driver_enabled         = var.storage_profile_file_driver_enabled
+    snapshot_controller_enabled = var.storage_profile_snapshot_controller_enabled
+  }
+
   dynamic "linux_profile" {
     for_each = var.ssh_public_key == "" ? [] : [var.ssh_public_key]
     content {
