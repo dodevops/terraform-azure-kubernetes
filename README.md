@@ -165,6 +165,16 @@ Type: `string`
 
 Default: `"1"`
 
+### automatic\_node\_upgrade\_channel
+
+Description: Values:  
+None, Unmanaged, SecurityPatch, NodeImage  
+see https://learn.microsoft.com/en-us/azure/aks/auto-upgrade-node-os-image
+
+Type: `string`
+
+Default: `"NodeImage"`
+
 ### automatic\_upgrade\_channel
 
 Description: Values:  
@@ -276,6 +286,48 @@ Description: The SKU for the used Load Balancer
 Type: `string`
 
 Default: `"basic"`
+
+### maintenance\_window\_auto\_node\_upgrade\_day\_of\_week
+
+Description: see https://learn.microsoft.com/en-us/azure/aks/planned-maintenance#creating-a-maintenance-window
+
+Type: `string`
+
+Default: `"Monday"`
+
+### maintenance\_window\_auto\_node\_upgrade\_duration
+
+Description: see https://learn.microsoft.com/en-us/azure/aks/planned-maintenance#creating-a-maintenance-window
+
+Type: `string`
+
+Default: `"4"`
+
+### maintenance\_window\_auto\_node\_upgrade\_enabled
+
+Description: Defines whether to add a schedule for node updates
+
+Type: `bool`
+
+Default: `false`
+
+### maintenance\_window\_auto\_node\_upgrade\_start\_time
+
+Description: Example: "04:00"  
+see https://learn.microsoft.com/en-us/azure/aks/planned-maintenance#creating-a-maintenance-window
+
+Type: `string`
+
+Default: `"04:00"`
+
+### maintenance\_window\_auto\_node\_upgrade\_utc\_offset
+
+Description: Example: "+00:00"  
+see https://learn.microsoft.com/en-us/azure/aks/planned-maintenance#creating-a-maintenance-window
+
+Type: `string`
+
+Default: `"+00:00"`
 
 ### maintenance\_window\_auto\_upgrade\_day\_of\_week
 
