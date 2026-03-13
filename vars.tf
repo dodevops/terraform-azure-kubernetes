@@ -284,6 +284,56 @@ variable "maintenance_window_auto_upgrade_utc_offset" {
   EOF
 }
 
+variable "maintenance_window_auto_node_upgrade_enabled" {
+  type        = bool
+  default     = false
+  description = "Defines whether to add a schedule for node updates"
+}
+
+variable "automatic_node_upgrade_channel" {
+  type        = string
+  default     = "NodeImage"
+  description = <<-EOF
+    Values:
+    None, Unmanaged, SecurityPatch, NodeImage
+    see https://learn.microsoft.com/en-us/azure/aks/auto-upgrade-node-os-image
+  EOF
+}
+
+variable "maintenance_window_auto_node_upgrade_day_of_week" {
+  type        = string
+  default     = "Monday"
+  description = <<-EOF
+    see https://learn.microsoft.com/en-us/azure/aks/planned-maintenance#creating-a-maintenance-window
+  EOF
+}
+
+variable "maintenance_window_auto_node_upgrade_duration" {
+  type        = string
+  default     = "4"
+  description = <<-EOF
+    see https://learn.microsoft.com/en-us/azure/aks/planned-maintenance#creating-a-maintenance-window
+  EOF
+}
+
+variable "maintenance_window_auto_node_upgrade_start_time" {
+  type        = string
+  default     = "04:00"
+  description = <<-EOF
+    Example: "04:00"
+    see https://learn.microsoft.com/en-us/azure/aks/planned-maintenance#creating-a-maintenance-window
+  EOF
+}
+
+variable "maintenance_window_auto_node_upgrade_utc_offset" {
+  type        = string
+  default     = "+00:00"
+  description = <<-EOF
+    Example: "+00:00"
+    see https://learn.microsoft.com/en-us/azure/aks/planned-maintenance#creating-a-maintenance-window
+  EOF
+}
+
 variable "default_node_pool_upgrade_settings_enabled" {
   type        = bool
   default     = false

@@ -12,6 +12,9 @@ locals {
   has_automatic_channel_upgrade_maintenance_window = var.automatic_upgrade_channel != "none" ? [
     var.automatic_upgrade_channel
   ] : []
+  has_automatic_node_channel_upgrade_maintenance_window = var.maintenance_window_auto_node_upgrade_enabled ? [
+    var.automatic_node_upgrade_channel
+  ] : []
   has_default_node_pool_upgrade_settings = var.default_node_pool_upgrade_settings_enabled == true ? [
     var.default_node_pool_upgrade_settings_enabled
   ] : []
@@ -47,6 +50,18 @@ resource "azurerm_kubernetes_cluster" "k8s" {
       day_of_week = var.maintenance_window_auto_upgrade_day_of_week
       start_time  = var.maintenance_window_auto_upgrade_start_time
       utc_offset  = var.maintenance_window_auto_upgrade_utc_offset
+    }
+  }
+
+  dynamic "maintenance_window_node_os" {
+    for_each = local.has_automatic_node_channel_upgrade_maintenance_window
+    content {
+      frequency   = "Weekly"
+      interval    = "1"
+      duration    = var.maintenance_window_auto_node_upgrade_duration
+      day_of_week = var.maintenance_window_auto_node_upgrade_day_of_week
+      start_time  = var.maintenance_window_auto_node_upgrade_start_time
+      utc_offset  = var.maintenance_window_auto_node_upgrade_utc_offset
     }
   }
 
