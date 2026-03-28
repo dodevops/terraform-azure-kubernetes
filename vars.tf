@@ -379,3 +379,27 @@ variable "default_node_pool_node_soak_duration_in_minutes" {
   }
   default = 0
 }
+
+variable "storage_profile_blob_driver_enabled" {
+  type        = bool
+  default     = false
+  description = "Is the Blob CSI driver enabled?"
+}
+
+variable "storage_profile_disk_driver_enabled" {
+  type        = bool
+  default     = true
+  description = "Is the Disk CSI driver enabled?"
+}
+
+variable "storage_profile_file_driver_enabled" {
+  type        = bool
+  default     = true
+  description = "Is the File CSI driver enabled?"
+}
+
+variable "storage_profile_snapshot_controller_enabled" {
+  type        = bool
+  default     = true
+  description = "Is the Snapshot Controller enabled?"
+}
