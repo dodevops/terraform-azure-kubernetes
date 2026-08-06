@@ -31,7 +31,7 @@ The following requirements are needed by this module:
 
 - azuread (>=2.41.0)
 
-- azurerm (>=3.63.0)
+- azurerm (>=4.57.0)
 
 ## Providers
 
@@ -39,7 +39,7 @@ The following providers are used by this module:
 
 - azuread (>=2.41.0)
 
-- azurerm (>=3.63.0)
+- azurerm (>=4.57.0)
 
 ## Modules
 
