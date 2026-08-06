@@ -392,3 +392,21 @@ variable "force_upgrade_effective_until" {
   type        = string
   default     = null
 }
+
+variable "oidc_issuer_enabled" {
+  description = "Whether to enable the OIDC issuer feature. With AzureRM 5.x.x the default changed to true if not specified explicitly"
+  type        = bool
+  default     = false
+}
+
+variable "node_provisioning_profile_mode" {
+  description = "Valid options: Auto, Manual"
+  type        = string
+  default     = "Manual"
+}
+
+variable "node_provisioning_profile_default_node_pools" {
+  description = "Valid options: Auto, None"
+  type        = string
+  default     = "Auto"
+}

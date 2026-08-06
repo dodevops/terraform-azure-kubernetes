@@ -128,6 +128,13 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     }
   }
 
+  oidc_issuer_enabled = var.oidc_issuer_enabled
+
+  node_provisioning_profile {
+    mode               = var.node_provisioning_profile_mode
+    default_node_pools = var.node_provisioning_profile_default_node_pools
+  }
+
   dynamic "linux_profile" {
     for_each = var.ssh_public_key == "" ? [] : [var.ssh_public_key]
     content {
