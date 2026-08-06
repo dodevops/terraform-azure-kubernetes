@@ -31,7 +31,7 @@ The following requirements are needed by this module:
 
 - azuread (>=2.41.0)
 
-- azurerm (>=3.63.0)
+- azurerm (>=4.57.0)
 
 ## Providers
 
@@ -39,7 +39,7 @@ The following providers are used by this module:
 
 - azuread (>=2.41.0)
 
-- azurerm (>=3.63.0)
+- azurerm (>=4.57.0)
 
 ## Modules
 
@@ -432,6 +432,22 @@ map(object({
 
 Default: `{}`
 
+### node\_provisioning\_profile\_default\_node\_pools
+
+Description: Valid options: Auto, None
+
+Type: `string`
+
+Default: `"Auto"`
+
+### node\_provisioning\_profile\_mode
+
+Description: Valid options: Auto, Manual
+
+Type: `string`
+
+Default: `"Manual"`
+
 ### node\_storage
 
 Description: Disk size in GB
@@ -439,6 +455,14 @@ Description: Disk size in GB
 Type: `string`
 
 Default: `"30"`
+
+### oidc\_issuer\_enabled
+
+Description: Whether to enable the OIDC issuer feature. With AzureRM 5.x.x the default changed to true if not specified explicitly
+
+Type: `bool`
+
+Default: `false`
 
 ### outbound\_ports\_allocated
 
